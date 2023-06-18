@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\TasksController;
+
 use App\Http\Controllers\ProfileController;
+use App\Models\Projects;
+use App\Models\Tasks;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,6 +37,17 @@ Route::get('/dashboard', function () {
 /**
  * Begin Custom Routes for WCS_PM Site
  */
+Route::resource('tasks', TasksController::class)
+
+    ->only(['index', 'store'])
+
+    ->middleware(['auth', 'verified']);
+
+Route::resource('projects', ProjectsController::class)
+
+    ->only(['index', 'store'])
+
+    ->middleware(['auth', 'verified']);
 
  /**
  * End Custom Routes for WCS_PM Site
