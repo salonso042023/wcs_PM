@@ -37,17 +37,8 @@ Route::get('/dashboard', function () {
 /**
  * Begin Custom Routes for WCS_PM Site
  */
-Route::resource('tasks', TasksController::class)
-
-    ->only(['index', 'store'])
-
-    ->middleware(['auth', 'verified']);
-
-Route::resource('projects', ProjectsController::class)
-
-    ->only(['index', 'store'])
-
-    ->middleware(['auth', 'verified']);
+Route::resource('tasks', TasksController::class)->only(['index', 'store'])->middleware(['auth', 'verified']);
+Route::resource('projects', ProjectsController::class)->only(['index', 'store'])->middleware(['auth', 'verified']);
 
  /**
  * End Custom Routes for WCS_PM Site

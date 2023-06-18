@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Response;
+use Inertia\Inertia;
+
+use Inertia\Response;
 
 use App\Models\Projects;
 use Illuminate\Http\Request;
@@ -14,7 +16,11 @@ class ProjectsController extends Controller
      */
     public function index(): Response
     {
-        return response('Projects Hello, World!');
+        return Inertia::render('Projects/Index', [
+
+            //
+
+        ]);
     }
 
     /**

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Response;
+use Inertia\Inertia;
+
+use Inertia\Response;
 
 use App\Models\Tasks;
 use Illuminate\Http\Request;
@@ -14,7 +16,9 @@ class TasksController extends Controller
      */
     public function index() : Response
     {
-        return response('Tasks Hello, World!');
+        return Inertia::render('Tasks/Index', [
+            //
+        ]);
     }
 
     /**
