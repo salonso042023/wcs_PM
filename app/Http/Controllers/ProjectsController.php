@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-
-use Inertia\Response;
-
 use App\Models\Projects;
 use Illuminate\Http\Request;
+
+use Inertia\Inertia;
+use Inertia\Response;
+use Illuminate\Http\RedirectResponse;
 
 class ProjectsController extends Controller
 {
@@ -34,9 +34,15 @@ class ProjectsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+        ]);
+
+        $request->user()->projects()->create($validated);
+
+        return redirect(route('projects.index'));
     }
 
     /**
