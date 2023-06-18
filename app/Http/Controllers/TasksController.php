@@ -9,6 +9,8 @@ use Inertia\Response;
 use App\Models\Tasks;
 use Illuminate\Http\Request;
 
+use Illuminate\Http\RedirectResponse;
+
 class TasksController extends Controller
 {
     /**
@@ -32,9 +34,16 @@ class TasksController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'task_title' => 'required|string|max:255',
+            'project_id' => 'required|string|max:255',
+        ]);
+
+        $request->user()->tasks()->create($validated);
+
+        return redirect(route('tasks.index'));
     }
 
     /**
